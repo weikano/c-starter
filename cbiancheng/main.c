@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Const.h"
 
 int usingScan();
 int usingIf();
@@ -11,6 +12,10 @@ int usingStrCat();
 int usingStrCopy();
 long factorial(int n);
 int indexofArray();
+int usingDefineFromConstH();
+int usingPointer();
+int usingPointerEx();
+int usingPointerArray();
 
 int main()
 {
@@ -23,7 +28,67 @@ int main()
 //    return usingStrCat();
 //    long result = factorial(5);
 //    printf("%d", result);
-    return indexofArray();
+//    return indexofArray();
+//    return usingDefineFromConstH();
+//    return usingPointer();
+//    return usingPointerVariable();
+//    return usingPointerEx();
+    return usingPointerArray();
+}
+
+int usingPointerArray()
+{
+    int arr[] = {1,2,3,4,5,6,7};
+    int length = sizeof(arr)/sizeof(int);
+    printf("array length %d, sizeof arr %d, sizeof int %d\n", length, sizeof(arr), sizeof(int));
+    int i;
+    for(i=0;i<length;i++){
+        printf("%d\n",*(arr+i));
+    }
+    return 0;
+}
+
+int usingPointerEx()
+{
+    int a = 10, *pa=&a, *paa = &a;
+    double b = 99.9, *pb = &b;
+    char c='@', *pc = &c;
+
+    printf("&a=%#X, &b=%#X, &c=%#X\n", &a, &b,&c);
+    printf("pa=%#X, pb=%#X, pc=%#X\n", pa, pb, pc);
+
+    pa ++;
+    pb ++;
+    pc ++;
+    printf("pa=%#X, pb=%#X, pc=%#X\n", pa, pb, pc);
+
+    return 0;
+}
+
+int usingPointer()
+{
+    int a = 100;
+    char msg[100] = "Hello World";
+    printf("pointer to a %#X, pointer to msg %#X", &a, msg);
+    return 0;
+}
+
+int usingPointerVariable()
+{
+    int *p1;
+    int a = 100;
+    p1 = &a;
+    printf("%#X\n",p1);
+    printf("%d",*p1);
+    return 0;
+}
+
+int usingDefineFromConstH()
+{
+    printf("N in Const.h is %d\n", N);
+    printf("Using PI in Const.h to calculate square of Radius 10 : %f\n", 10.0f * 10.f*PI);
+    printf("Using MAX(a,b) in Const.h of 3,4 : %d\n", MAX(3,4));
+    return 0;
 }
 
 long factorial(int n)
