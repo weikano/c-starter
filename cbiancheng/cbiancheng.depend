@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1496634956 source:d:\documents\github\c-starter\cbiancheng\main.c
+	<stdio.h>
+	<stdlib.h>
+
