@@ -16,6 +16,24 @@ int usingDefineFromConstH();
 int usingPointer();
 int usingPointerEx();
 int usingPointerArray();
+int swapUsingPointer();
+void swap(int *pa, int *pb);
+/**
+**会自动将arr[] 转换为指向第一个元素的指针，所以里面的sizeof=4，必须要把length作为参数传进来
+**等价于int findMax(int *parr, int length)
+*/
+int findMax(int arr[], int length)
+{
+    int max = arr[0];
+    int i = 1;
+    for(i = 1;i<length;i++) {
+        if(max < arr[i]) {
+            max = arr[i];
+        }
+    }
+    return max;
+
+}
 
 int main()
 {
@@ -33,7 +51,37 @@ int main()
 //    return usingPointer();
 //    return usingPointerVariable();
 //    return usingPointerEx();
-    return usingPointerArray();
+//    return usingPointerArray();
+//    return swapUsingPointer();
+
+//    int a = 1, b =2;
+//    swap(&a, &b);
+//    printf("a is now %d and b is %d", a, b);
+    int arr[] = {1,4,11,22,3,24};
+    printf("findMax is %d", findMax(arr, sizeof(arr)/sizeof(int)));
+    return 0;
+}
+
+void swap(int *pa, int *pb)
+{
+    int tmp = *pa;
+    *pa = *pb;
+    *pb = tmp;
+}
+
+/**
+* 通过修改pointer的值来交换变量
+**/
+int swapUsingPointer()
+{
+    int a = 100, b = 999, tmp;
+    int *pa = &a, *pb = &b;
+    printf("a is %d and b is %d\n", a, b);
+    tmp = *pa;
+    *pa = *pb;
+    *pb = tmp;
+    printf("a is %d and b is %d\n", a, b);
+    return 0;
 }
 
 int usingPointerArray()

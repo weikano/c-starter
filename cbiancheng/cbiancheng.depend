@@ -1,5 +1,9 @@
 # depslib dependency file v1.0
-1496634956 source:d:\documents\github\c-starter\cbiancheng\main.c
+1496824786 source:d:\documents\github\c-starter\cbiancheng\main.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
+	"Const.h"
+
+1496721679 d:\documents\github\c-starter\cbiancheng\const.h
 
