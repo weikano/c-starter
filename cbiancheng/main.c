@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Const.h"
+#include "StructD.h"
 
 int usingScan();
 int usingIf();
@@ -18,6 +19,7 @@ int usingPointerEx();
 int usingPointerArray();
 int swapUsingPointer();
 void swap(int *pa, int *pb);
+int pointerArray();
 /**
 **会自动将arr[] 转换为指向第一个元素的指针，所以里面的sizeof=4，必须要把length作为参数传进来
 **等价于int findMax(int *parr, int length)
@@ -32,7 +34,50 @@ int findMax(int arr[], int length)
         }
     }
     return max;
+}
 
+int pointerAndCharArray()
+{
+    char *msgs[3] = {"Hello World","This is me","c.biancheng.org"};
+//    等价于下列形式
+//    char *str1 = "Hello World";
+//    char *str2 = "This is me";
+//    char *str3 = "c.biancheng.org";
+//    char *msgs[3]={str1, str2, str3};
+
+    printf("%s\n%s\n%s\n", msgs[0],msgs[1],msgs[2]);
+    return 0;
+}
+
+int usingStructD()
+{
+    struct stu stuA ;
+    stuA.name = "Tom";
+    stuA.age = 22;
+    stuA.avgScore = 90.0f;
+    stuA.group = 'A';
+    stuA.num = 123;
+    //或者struct stuA = {"Tom",22,123,90.0f,'A'};
+    printf("%s的学号是%d, 年龄是%d, 平均分为%.1f, 在%c组 ", stuA.name, stuA.num, stuA.age, stuA.avgScore, stuA.group);
+    return 0;
+}
+
+int max(int a, int b)
+{
+    return a>b?a:b;
+}
+
+int usingFunctionPointer()
+{
+    int x, y, maxValue;
+    int (*pmax)(int, int) = max;
+//    long (*pfactorial)(int) = factorial;
+    printf("Input two numbers :");
+    scanf("%d %d", &x, &y);
+    maxValue = (*pmax)(x,y);
+    printf("max value is %d\n", maxValue);
+//    printf("factorial of index %d is %d", maxValue, (*pfactorial)(maxValue));
+    return 0;
 }
 
 int main()
@@ -57,8 +102,24 @@ int main()
 //    int a = 1, b =2;
 //    swap(&a, &b);
 //    printf("a is now %d and b is %d", a, b);
-    int arr[] = {1,4,11,22,3,24};
-    printf("findMax is %d", findMax(arr, sizeof(arr)/sizeof(int)));
+
+//    int arr[] = {1,4,11,22,3,24};
+//    printf("findMax is %d", findMax(arr, sizeof(arr)/sizeof(int)));
+//    return 0;
+
+//    return pointerArray();
+//    return pointerAndCharArray();
+//    return usingFunctionPointer();
+    return usingStructD();
+}
+
+int pointerArray()
+{
+    int a = 16,b=932,c=100;
+    int *arr[3] = {&a, &b, &c};
+    int **parr = &arr;
+    printf("%d, %d, %d\n",*arr[0], *arr[1], *arr[2]);
+    printf("%d, %d, %d\n",**parr, **(parr+1), **(parr+2));
     return 0;
 }
 
