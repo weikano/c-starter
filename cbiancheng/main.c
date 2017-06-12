@@ -3,6 +3,7 @@
 #include <string.h>
 #include "Const.h"
 #include "StructD.h"
+#include "EnumH.h"
 
 int usingScan();
 int usingIf();
@@ -80,6 +81,109 @@ int usingFunctionPointer()
     return 0;
 }
 
+int usingEnum()
+{
+    printf("please input a number between 1 and 7 : ");
+    int number;
+    scanf("%d", &number);
+    switch(number) {
+        case Mon : puts("Monday");break;
+        case Tues : puts("Tues");break;
+        case Thurs : puts("Thurs");break;
+        case Fri : puts("Fri");break;
+        case Wed : puts("Wed");break;
+        case Sat : puts("Sat");break;
+        case Sun : puts("Sun");break;
+        default:
+            puts("error");
+    }
+    return 0;
+}
+
+int fileOperator(const char *filename)
+{
+    FILE *file = fopen(filename,"a");
+    if(file == NULL) {
+        return -1;
+    }
+    printf("open file %s", filename);
+    fclose(file);
+    return 0;
+}
+
+int writeAndReadFile(const char *filename, const char *msg)
+{
+    FILE *file = fopen(filename, "a");
+    if(file == NULL){
+        printf("error on open file %s", filename);
+    }
+    fputs(msg,file);
+    fclose(file);
+    file = fopen(filename,"r");
+    char content[200];
+    while(fgets(content, 200, file) != NULL) {
+        printf("%s",content);
+    }
+    fclose(file);
+    return 0;
+}
+
+int writeFile()
+{
+    FILE *file = fopen("D:\\DEMO.txt","a");
+    if(file == NULL) {
+        printf("file open failed");
+        return 0;
+    }
+    char *content;
+    printf("Please input content :\n");
+    gets(content);
+    fputs(content, file);
+    fclose(file);
+    return 0;
+}
+
+int writeBlock()
+{
+    FILE *file = fopen("d:\\writeBlock.txt","rb+");
+    if( file == NULL) {
+        printf("file open failed");
+        return 0;
+    }
+    int a[] = {0,1,2,3,4};
+//    char *b = "this is array";
+    int lengthOfA = sizeof(a)/sizeof(int);
+    int c[lengthOfA];
+//    int lenghtOfB = strlen(b);
+
+    fwrite(a,sizeof(int), lengthOfA, file);
+    rewind(file);
+    fread(c, sizeof(int), lengthOfA, file);
+    int i;
+    for(i=0;i<lengthOfA;i++){
+        printf("%d\n", c[i]);
+    }
+    fclose(file);
+    return 0;
+}
+
+int writeBlockEx()
+{
+    char *msg = "Hello World";
+    char *read;
+    FILE *fp = fopen("d:\\writeBlockChar.txt","rb+");
+    if(fp == NULL) {
+        printf("file open failed");
+        return 0;
+    }
+    fwrite(msg,sizeof(char),strlen(msg),fp);
+    rewind(fp);
+    fread(read, sizeof(char), strlen(msg), fp);
+    fclose(fp);
+    printf("%s", read);
+    return 0;
+}
+
 int main()
 {
 //    return printMessage("Hello World!\n");
@@ -110,7 +214,13 @@ int main()
 //    return pointerArray();
 //    return pointerAndCharArray();
 //    return usingFunctionPointer();
-    return usingStructD();
+//    return usingStructD();
+//    return usingEnum();
+//    return fileOperator("D:\\DEMO.txt");
+//    return writeAndReadFile("d:\\DEMO.txt","Hello World");
+//    return writeFile();
+//    return writeBlock();
+return writeBlockEx();
 }
 
 int pointerArray()

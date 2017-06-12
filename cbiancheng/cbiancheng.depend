@@ -1,9 +1,15 @@
 # depslib dependency file v1.0
-1496824786 source:d:\documents\github\c-starter\cbiancheng\main.c
+1497239985 source:d:\documents\github\c-starter\cbiancheng\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"Const.h"
+	"StructD.h"
+	"EnumH.h"
 
 1496721679 d:\documents\github\c-starter\cbiancheng\const.h
+
+1496911675 d:\documents\github\c-starter\cbiancheng\structd.h
+
+1496979247 d:\documents\github\c-starter\cbiancheng\enumh.h
 
